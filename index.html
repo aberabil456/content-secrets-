@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أسرار كتابة المحتوى</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap">
+<style>
+/* Layout: dark coffee hero, alternating light bands, sticky buy bar. Same design as the author's original page. */
+:root{--bg:#faf6ee;--surface:#ffffff;--ink:#2a1c12;--muted:#6b5a4b;--coffee:#2a1c12;--coffee2:#3a2819;--gold:#b98a45;--gold-d:#8a6128;--line:#e6dac6;--on:#f6efe3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a120c;--surface:#25180f;--ink:#f3e9d9;--muted:#c3b09b;--line:#42301f;--gold-d:#d3a965;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a120c;--surface:#25180f;--ink:#f3e9d9;--muted:#c3b09b;--line:#42301f;--gold-d:#d3a965;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Cairo",Tahoma,Arial,sans-serif;font-size:17px;line-height:1.9;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+.w{max-width:1000px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;line-height:1.35}
+h2{font-size:clamp(26px,5vw,36px);font-weight:900;margin-bottom:10px;text-wrap:balance}
+.sub{color:var(--muted);max-width:36em;margin:0 0 28px}
+p{margin:0 0 12px}
+section{padding-block:56px}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#241508;font:800 18px/1 "Cairo",Tahoma,Arial,sans-serif;padding:16px 30px;border-radius:12px;text-decoration:none;transition:background .15s}
+.btn:hover{background:#cb9a53}
+.btn:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.hero{background:var(--coffee);color:var(--on);padding-block:64px 56px;text-align:center}
+.hero h1{font-size:clamp(40px,10vw,76px);font-weight:900;letter-spacing:-.5px;text-wrap:balance}
+.hero .rule{width:72px;height:4px;background:var(--gold);border-radius:2px;margin:22px auto}
+.hero .lead{font-size:clamp(18px,3.4vw,22px);color:#e6d9c4;max-width:32em;margin:0 auto 26px}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 0 30px;padding:0;list-style:none}
+.facts li{border:1px solid #5a4430;border-radius:999px;padding:4px 16px;font-size:15px;color:#e6d9c4}
+.hero .price{display:flex;justify-content:center;align-items:baseline;gap:8px;margin-bottom:20px}
+.hero .price b{font-size:56px;font-weight:900;color:var(--gold);line-height:1}
+.hero .price span{color:#e6d9c4}
+.hero small{display:block;margin-top:14px;color:#cdbca4;font-size:14px}
+.cols{display:grid;gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;min-width:0}
+.card h3{font-size:20px;font-weight:800;margin-bottom:10px;color:var(--gold-d)}
+.card ul{margin:0;padding:0 18px 0 0}
+.card li{margin-bottom:6px}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.toc{columns:1;padding:0;margin:0;list-style:none}
+.toc li{padding:10px 0;border-bottom:1px solid var(--line)}
+.note{background:var(--bg);border:1px dashed var(--gold);border-radius:12px;padding:16px 18px;color:var(--muted);margin-top:18px}
+.steps{display:grid;gap:14px;padding:0;margin:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;min-width:0}
+.steps li::before{content:counter(s);flex:none;width:36px;height:36px;border-radius:50%;background:var(--gold);color:#241508;font-weight:900;display:grid;place-items:center;line-height:1}
+.pay{display:grid;gap:12px;margin-top:22px}
+.pay div{background:var(--coffee);color:var(--on);border-radius:12px;padding:14px 18px;min-width:0}
+.num{direction:ltr;unicode-bidi:isolate;display:inline-block;font-weight:800;color:var(--gold);font-size:20px;letter-spacing:.5px;user-select:all}
+.offer{background:var(--coffee);color:var(--on);border-radius:20px;padding:34px 24px;text-align:center}
+.offer h2{color:var(--on)}
+.offer ul{list-style:none;padding:0;margin:0 auto 18px;max-width:24em;text-align:right}
+.offer li{padding:7px 0;border-bottom:1px solid #4a3623}
+.offer .price{display:flex;justify-content:center;align-items:baseline;gap:8px;margin:14px 0 20px}
+.offer .price b{font-size:52px;font-weight:900;color:var(--gold);line-height:1}
+.offer small{display:block;margin-top:14px;color:#cdbca4}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font-weight:800;font-size:18px}
+details p{margin:8px 0 0;color:var(--muted)}
+.final{text-align:center}
+footer{padding-block:26px 30px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));text-align:center;color:var(--muted);font-size:14px}
+.bar{position:fixed;inset:auto 0 0 0;background:var(--coffee);color:var(--on);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:20;box-shadow:0 -6px 20px rgba(0,0,0,.25)}
+.bar b{color:var(--gold);font-size:22px;font-weight:900}
+.bar .btn{padding:12px 22px;font-size:16px}
+@media(min-width:760px){
+.cols{grid-template-columns:repeat(3,1fr)}
+.toc{columns:2;column-gap:40px}
+.steps{grid-template-columns:repeat(3,1fr)}
+.steps li{flex-direction:column}
+.pay{grid-template-columns:1fr 1fr}
+section{padding-block:76px}
+.hero{padding-block:96px 84px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+
+<header class="hero"><div class="w">
+<h1>أسرار كتابة المحتوى</h1>
+<div class="rule"></div>
+<p class="lead">كتاب عملي بالعامية المصرية يعلّمك تجيب أفكار، وتكتب خطاف وعنوان، وتحكي قصة، وتعمل ريلز بسيط ومفيد — من غير مصطلحات معقدة.</p>
+<ul class="facts"><li>ملف PDF</li><li>66 صفحة</li><li>باللغة العربية</li><li>للمبتدئ والمتوسط</li></ul>
+<div class="price"><b>125</b><span>جنيه مصري</span></div>
+<a class="btn" href="https://wa.me/201029364770?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%8A%20%D9%83%D8%AA%D8%A7%D8%A8%20%C2%AB%D8%A3%D8%B3%D8%B1%D8%A7%D8%B1%20%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%C2%BB%20%28PDF%29%20%D8%A8%D8%B3%D8%B9%D8%B1%20125%20%D8%AC%D9%86%D9%8A%D9%87.">اشتري الكتاب على واتساب</a>
+<small>الاستلام على واتساب بعد التحويل — استرجاع خلال 24 ساعة بشرط عدم الانتفاع</small>
+</div></header>
+
+<section><div class="w">
+<h2>بتكتب وحاسس إن مفيش حد بيشوف؟</h2>
+<p class="sub">معلومات كتابة المحتوى كتير، لكنها متفرقة بين كورسات وكتب وبودكاست ومقالات، والمحتوى العربي مأخدش حقه من الاهتمام. الكتاب ده جمّع الخلاصة في مكان واحد وبأسلوب بسيط، كأنك قاعد مع صاحبك في كافيه وبتشرب قهوة.</p>
+</div></section>
+
+<section class="band"><div class="w">
+<h2>هتتعلم إيه وتطبقه؟</h2>
+<p class="sub">أمثلة وقوالب وخطوات عملية تقدر تطبقها على طول.</p>
+<div class="cols">
+<div class="card"><h3>تبدأ صح</h3><ul><li>ازاي تجيب أفكار</li><li>التريند جاكنج</li><li>الشوشيال جاكنج</li><li>ازاي تجيب متابعين وانت معندكش</li></ul></div>
+<div class="card"><h3>تكتب بشكل يشد القارئ</h3><ul><li>الخطاف (Hook) والعنوان</li><li>الاستوري تيلينج</li><li>قصة نجاح براند بالمحتوى</li><li>الكول تو أكشن (CTA)</li></ul></div>
+<div class="card"><h3>تنشر وتراجع</h3><ul><li>ريلز سريع وبسيط ومفيد يجيب مشاهدات</li><li>تشيك ليست لنجاح المحتوى</li><li>أخطاء قاتلة في كتابة المحتوى</li></ul></div>
+</div>
+</div></section>
+
+<section><div class="w">
+<h2>محتويات الكتاب</h2>
+<p class="sub">13 محور مرتبين من الأساسيات للتطبيق.</p>
+<ul class="toc">
+<li>أنا مين</li><li>إرشادات ونصائح مهمة أثناء القراءة</li><li>ازاي تجيب أفكار</li><li>التريند جاكنج</li><li>الشوشيال جاكنج</li><li>الخطاف (Hook) والعنوان</li><li>الاستوري تيلنج</li><li>قصة نجاح براند بالمحتوى</li><li>ازاي تعمل ريلز سريع بسيط مفيد يجيب مشاهدات</li><li>الكول تو أكشن (CTA)</li><li>اعمل تشيك ليست لنجاح المحتوى بتاعك</li><li>ازاي تجيب متابعين وانت معندكش</li><li>أخطاء قاتلة في كتابة المحتوى</li>
+</ul>
+</div></section>
+
+<section class="band"><div class="w">
+<h2>الكتاب ده مناسب ليك لو…</h2>
+<p class="sub">عايز تبدأ تكتب محتوى نصي على فيسبوك أو تعمل ريلز، وانت مبتدئ أو مستواك متوسط. مش محتاج خبرة سابقة، واللغة بسيطة ومفيهاش تعقيد.</p>
+<div class="note">الكتاب مكتوب بنية إنه يتستخدم في نشر محتوى نافع. لو ناوي تنشر محتوى تافه أو ضار أو حرام، المؤلف بيقولك من الأول إن الكتاب مش ليك.</div>
+</div></section>
+
+<section><div class="w">
+<h2>مين اللي كاتب الكتاب؟</h2>
+<p class="sub" style="margin:0">أنا عبد الله، كاتب محتوى بقالي أكتر من 3 سنين، بحب الكتابة وشغوف بيها. اشتغلت في أكتر من مكان، وقريت وسمعت كتب وبودكاست ومقالات كتير في التسويق والكتابة، وبدأت مؤخرًا أنتج ريلز سريع وبسيط بيجيب مشاهدات. في الكتاب هحكيلك تجربتي وخبرتي في البوستات والستوري تيلينج وصناعة الريلز.</p>
+</div></section>
+
+<section class="band" id="buy"><div class="w">
+<h2>ازاي تشتري وتستلم؟</h2>
+<p class="sub">تلات خطوات بس.</p>
+<ol class="steps">
+<li><div><strong>حوّل 125 جنيه</strong><br>على فودافون كاش أو إنستا باي.</div></li>
+<li><div><strong>ابعت صورة التحويل</strong><br>على واتساب.</div></li>
+<li><div><strong>استلم الكتاب</strong><br>بيوصلك ملف الـPDF على واتساب.</div></li>
+</ol>
+<div class="pay">
+<div>فودافون كاش<br><span class="num">01029364770</span></div>
+<div>إنستا باي<br><span class="num">01145639144</span></div>
+</div>
+</div></section>
+
+<section><div class="w">
+<div class="offer">
+<h2>أسرار كتابة المحتوى</h2>
+<ul>
+<li>كتاب PDF عربي، 66 صفحة</li>
+<li>أمثلة وقوالب وخطوات عملية</li>
+<li>استلام على واتساب بعد التحويل</li>
+</ul>
+<div class="price"><b>125</b><span>جنيه مصري</span></div>
+<a class="btn" href="https://wa.me/201029364770?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%8A%20%D9%83%D8%AA%D8%A7%D8%A8%20%C2%AB%D8%A3%D8%B3%D8%B1%D8%A7%D8%B1%20%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%C2%BB%20%28PDF%29%20%D8%A8%D8%B3%D8%B9%D8%B1%20125%20%D8%AC%D9%86%D9%8A%D9%87.">ابعت طلبك على واتساب</a>
+<small>الاسترجاع خلال 24 ساعة بشرط عدم الانتفاع بالكتاب والاستفادة منه</small>
+</div>
+</div></section>
+
+<section class="band"><div class="w">
+<h2>أسئلة شائعة</h2>
+<details><summary>الكتاب بصيغة إيه؟</summary><p>ملف PDF، 66 صفحة، باللغة العربية.</p></details>
+<details><summary>ادفع إزاي؟</summary><p>فودافون كاش على 01029364770 أو إنستا باي على 01145639144.</p></details>
+<details><summary>أستلم الكتاب إزاي؟</summary><p>بعد التحويل ابعت صورته على واتساب، وهتستلم الكتاب هناك.</p></details>
+<details><summary>مناسب للمبتدئين؟</summary><p>أيوه، الكتاب موجّه للمبتدئ والمتوسط، وبأسلوب بسيط من غير مصطلحات صعبة.</p></details>
+<details><summary>لو ما استفدتش أقدر أسترد فلوسي؟</summary><p>الاسترجاع متاح خلال 24 ساعة، بشرط عدم الانتفاع بالكتاب والاستفادة منه.</p></details>
+<details><summary>الكتاب بيضمن مشاهدات أو متابعين؟</summary><p>لا. الكتاب بيديك طرق وخطوات تطبقها، والنتيجة بتعتمد على تطبيقك واستمرارك.</p></details>
+<details><summary>أتواصل معاك إزاي لو عندي مشكلة؟</summary><p>الدعم على واتساب على نفس رقم الطلب.</p></details>
+</div></section>
+
+<section class="final"><div class="w">
+<h2>جاهز تبدأ تكتب محتوى أحسن؟</h2>
+<p class="sub" style="margin:0 auto 22px">125 جنيه، كتاب PDF، والتواصل والدعم على واتساب.</p>
+<a class="btn" href="https://wa.me/201029364770?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%8A%20%D9%83%D8%AA%D8%A7%D8%A8%20%C2%AB%D8%A3%D8%B3%D8%B1%D8%A7%D8%B1%20%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%C2%BB%20%28PDF%29%20%D8%A8%D8%B3%D8%B9%D8%B1%20125%20%D8%AC%D9%86%D9%8A%D9%87.">اشتري الكتاب على واتساب</a>
+</div></section>
+<footer>© أسرار كتابة المحتوى — عبد الله</footer>
+<div class="bar"><div><b>125</b> جنيه</div><a class="btn" href="https://wa.me/201029364770?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%8A%20%D9%83%D8%AA%D8%A7%D8%A8%20%C2%AB%D8%A3%D8%B3%D8%B1%D8%A7%D8%B1%20%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%C2%BB%20%28PDF%29%20%D8%A8%D8%B3%D8%B9%D8%B1%20125%20%D8%AC%D9%86%D9%8A%D9%87.">اشتري على واتساب</a></div>
+
+</body>
+</html>
